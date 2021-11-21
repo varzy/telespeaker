@@ -1,8 +1,6 @@
 import { createStore } from 'vuex';
+import view from './modules/view';
 
 export default createStore({
-  state: {},
-  mutations: {},
-  actions: {},
-  modules: {},
+  modules: { view },
 });

@@ -1,5 +1,11 @@
 import http from '../utils/http';
 
+export const reqGetMe = () =>
+  http({
+    url: `/getMe`,
+    method: 'GET',
+  });
+
 export const reqSendPhoto = (formData) =>
   http({
     url: `/sendPhoto`,

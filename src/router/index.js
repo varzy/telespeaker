@@ -1,33 +1,16 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import Index from '../views/Index.vue';
+import Router from './router';
+import Store from '../store/';
+import * as _cloneDeep from 'lodash/cloneDeep';
+import { navigation } from './routes';
 
-const routes = [
-  {
-    path: '/',
-    name: 'Index',
-    component: Index,
-    redirect: { name: 'SendPhoto' },
-    meta: { title: '首页' },
-    children: [
-      {
-        name: 'SendPhoto',
-        path: 'send-photo',
-        component: () => import('../views/SendPhoto.vue'),
-        meta: { title: '发照片' },
-      },
-      {
-        name: 'SendMessage',
-        path: 'send-message',
-        component: () => import('../views/SendMessage.vue'),
-        meta: { title: '发消息' },
-      },
-    ],
-  },
-];
-
-const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes,
+Router.beforeEach(() => {
+  // 保存导航路由至 vuex
+  !Store.state.view.isNavigationSaved &&
+    Store.commit('view/STORE_NAVIGATION', _cloneDeep(navigation));
 });
 
-export default router;
+Router.afterEach(() => {
+  window.scrollTo(0, 0);
+});
+
+export default Router;
