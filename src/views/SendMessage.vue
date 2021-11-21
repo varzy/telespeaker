@@ -1,5 +1,8 @@
 <template>
-  <div class="send_message"></div>
+  <div class="send_message">
+
+
+  </div>
 </template>
 
 <script>
